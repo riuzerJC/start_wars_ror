@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_200428) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_204322) do
   create_table "films", force: :cascade do |t|
     t.string "title", null: false
     t.integer "episode_id", null: false
@@ -20,6 +20,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_200428) do
     t.datetime "release_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "films_planets", id: false, force: :cascade do |t|
+    t.bigint "film_id"
+    t.bigint "planet_id"
+    t.index ["film_id"], name: "index_films_planets_on_film_id"
+    t.index ["planet_id"], name: "index_films_planets_on_planet_id"
   end
 
   create_table "planets", force: :cascade do |t|
