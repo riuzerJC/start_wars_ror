@@ -37,7 +37,11 @@ class FilmsController < ApplicationController
   private
 
   def set_film
-    @film = Film.find(params[:id])
+    @film = Film.find_by(id: params[:id])
+
+    unless @film
+      render json: { error: "Film not found" }, status: :not_found
+    end
   end
 
   def film_params

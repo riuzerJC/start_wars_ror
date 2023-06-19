@@ -38,7 +38,11 @@ class PlanetsController < ApplicationController
   private
 
   def set_planet
-    @planet = Planet.find(params[:id])
+    @planet = Planet.find_by(id: params[:id])
+
+    unless @planet
+      render json: { error: "Planet not found" }, status: :not_found
+    end
   end
 
   def planet_params
