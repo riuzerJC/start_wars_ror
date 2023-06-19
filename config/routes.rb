@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   resources :films
 
-  # /film => filmsController
+  resources :planets
 end
