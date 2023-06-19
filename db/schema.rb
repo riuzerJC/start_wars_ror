@@ -12,12 +12,12 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_06_19_171127) do
   create_table "films", force: :cascade do |t|
-    t.string "title"
-    t.integer "episode_id"
-    t.text "opening_crawl"
-    t.string "director"
-    t.string "producer"
-    t.datetime "release_date"
+    t.string "title", null: false
+    t.integer "episode_id", null: false
+    t.text "opening_crawl", null: false
+    t.string "director", null: false
+    t.string "producer", null: false
+    t.datetime "release_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
