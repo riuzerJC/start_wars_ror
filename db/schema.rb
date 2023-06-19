@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_171127) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_200428) do
   create_table "films", force: :cascade do |t|
     t.string "title", null: false
     t.integer "episode_id", null: false
@@ -18,6 +18,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_171127) do
     t.string "director", null: false
     t.string "producer", null: false
     t.datetime "release_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "planets", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "diameter", null: false
+    t.string "rotation_period", null: false
+    t.string "orbital_period", null: false
+    t.string "gravity", null: false
+    t.string "population", null: false
+    t.string "climate", null: false
+    t.string "terrain", null: false
+    t.string "surface_water", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
