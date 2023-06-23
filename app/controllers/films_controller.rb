@@ -22,8 +22,13 @@ class FilmsController < ApplicationController
   end
 
   def update
-    if @film.update(film_params)
-      render json: @film
+    planets = PlanetService.new.get_planets_from_ids(film_params[:planets])
+
+    data = film_params.dup
+    data[:planets] = planets
+
+    if @film.update(data)
+      render json: @film, include: :planets
     else
       render json: @film.errors, status: :unprocessable_entity
     end
@@ -53,7 +58,12 @@ class FilmsController < ApplicationController
         :opening_crawl,
         :director,
         :producer,
-        :release_date
+        :release_date,
+        planets: []
       )
+  end
+
+  def lookup_planets(list_id_planets)
+
   end
 end
