@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
 
-  before_action :set_film, only: [:show, :edit, :update, :destroy]
+  before_action :set_people, only: [:show, :edit, :update, :destroy]
 
   def index
     people = People.all
@@ -23,43 +23,48 @@ class PeopleController < ApplicationController
   end
 
   def update
-    people = PlanetService.new.get_planets_from_ids(film_params[:planets])
+    people = PeopleService.new.get_planets_from_ids(film_params[:planets])
 
-    data = film_params.dup
-    data[:planets] = planets
+    data = people_params.dup
+    data[:people] = people
 
-    if @film.update(data)
-      render json: @film, include: :planets
+    if @people.update(data)
+      render json: @people, include: :people
     else
-      render json: @film.errors, status: :unprocessable_entity
+      render json: @people.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @film.destroy
+    @people.destroy
     head :no_content
   end
 
   private
 
-  def set_film
-    @film = Film.find_by(id: params[:id])
+  def set_people
+    @people = People.find_by(id: params[:id])
 
-    unless @film
-      render json: { error: "Film not found" }, status: :not_found
+    unless @people
+      render json: { error: "people not found" }, status: :not_found
     end
   end
 
-  def film_params
+  def people_params
     params
-      .require(:film)
+      .require(:people)
       .permit(
-        :title,
-        :episode_id,
-        :opening_crawl,
-        :director,
-        :producer,
-        :release_date,
+        :name,
+        :birth_year,
+        :eye_color,
+        :gender,
+        :hair_color,
+        :height,
+        :mass,
+        :skin_color,
+        :homeworld,
+        :created,
+        :edited,
         planets: []
       )
   end
