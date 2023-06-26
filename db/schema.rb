@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_25_222541) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_26_200151) do
   create_table "films", force: :cascade do |t|
     t.string "title", null: false
     t.integer "episode_id", null: false
@@ -22,11 +22,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_222541) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "films_people", id: false, force: :cascade do |t|
+    t.bigint "film_id"
+    t.bigint "people_id"
+    t.index ["film_id"], name: "index_films_people_on_film_id"
+    t.index ["people_id"], name: "index_films_people_on_people_id"
+  end
+
   create_table "films_planets", id: false, force: :cascade do |t|
     t.bigint "film_id"
     t.bigint "planet_id"
     t.index ["film_id"], name: "index_films_planets_on_film_id"
     t.index ["planet_id"], name: "index_films_planets_on_planet_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "birth_year", null: false
+    t.string "eye_color", null: false
+    t.string "gender", null: false
+    t.string "hair_color", null: false
+    t.string "height", null: false
+    t.string "mass", null: false
+    t.string "skin_color", null: false
+    t.string "homeworld", null: false
+    t.datetime "created", null: false
+    t.datetime "edited", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "planets", force: :cascade do |t|
@@ -43,17 +66,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_222541) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "birth_year", null: false
-    t.string "eye_color", null: false
-    t.string "gender", null: false
-    t.string "hair_color", null: false
-    t.string "height", null: false
-    t.string "mass", null: false
-    t.string "skin_color", null: false
-    t.string "homeworld", null: false
-    t.datetime "created", null: false
-    t.datetime "edited", null: false
-  end
 end
