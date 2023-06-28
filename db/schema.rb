@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_26_200151) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_234650) do
   create_table "films", force: :cascade do |t|
     t.string "title", null: false
     t.integer "episode_id", null: false
@@ -62,6 +62,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_200151) do
     t.string "climate", null: false
     t.string "terrain", null: false
     t.string "surface_water", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
